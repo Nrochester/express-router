@@ -1,7 +1,8 @@
 const express = require("express")
 const app = express()
 const port = 3000
-
+const userRouter = require('./routes/user')
+const fruitRouter = require('./routes/fruit')
 // List of Users
 let users = [
     {
@@ -43,10 +44,13 @@ let fruits = [
 ]
 
 // Express Routes
+app.use(express.json())
+app.use(express.urlencoded())
 
-
+app.use('/users', userRouter)
+app.use('/fruits', fruitRouter)
 
 
 app.listen(port, () => {
-    console.log(`App listening on port ${port}`)
+    console.log(`Your server is listening on port http://localhost:${port}/users`)
 })
